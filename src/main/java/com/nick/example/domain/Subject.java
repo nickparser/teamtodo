@@ -1,9 +1,6 @@
 package com.nick.example.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Subject {
@@ -14,11 +11,16 @@ public class Subject {
     private String title;
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
     public Subject() { }
 
-    public Subject(String title, String description) {
+    public Subject(String title, String description, User user) {
         this.title = title;
         this.description = description;
+        this.author = user;
     }
 
     public Long getId() {
@@ -43,5 +45,13 @@ public class Subject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

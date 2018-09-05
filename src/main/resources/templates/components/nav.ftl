@@ -1,3 +1,5 @@
+<#include "security.ftl">
+<#import "log.ftl" as log>
 <#assign requestUri = springMacroRequestContext.requestUri >
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="/">Teamtodo</a>
@@ -13,5 +15,8 @@
                 </li>
             </#if>
         </ul>
+
+        <div class="navbar-text mr-3">${name}</div>
+        <@log.logout/>
     </div>
 </nav>
